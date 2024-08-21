@@ -6,53 +6,56 @@ const lenovo = 42000
 const errores = ["hardware", "software"]
 const hardware = 20000
 const software = 15000
-const conGarantía = 0
-const sinGarantía = 10000
+const conGarantia = 0
+const sinGarantia = 10000
 
 
 let nombreUsuario = prompt("Ingrese su nombre")
 let email = prompt("Ingrese su direccion de correo electronico")
-let sector = prompt("Ingrese su sector")
 let id = parseInt(prompt("Ingrese su id de empleado"))
-console.log(nombreUsuario, email, sector, id)
-alert("Bienvenido al sistema de tickets "+nombreUsuario+",\n "+email+",\n "+sector+",\n "+id)
+console.log(nombreUsuario, email, id)
+alert("Bienvenido al sistema de tickets:"+nombreUsuario+" \n Correo:"+email+" \n Empleado N°"+id)
     
         let continuar = true
-        while (continuar){
-            let menu = parseInt(prompt("Ingrese 1 Para realizar una cotizacion por reparación, \n 2 Para consultar el estado de un reparación iniciada, \n 3 Para hablar con un técnico, \n otra tecla para salir"))
+        while (continuar !==4){
+            let menu = parseInt(prompt("Ingrese: \n 1 - Para realizar una cotizacion por reparación \n 2 - Para consultar el estado de un reparación iniciada \n 3 - Para hablar con un técnico \n Otra tecla para salir"))
             switch(menu){
                 case 1:
-                    let tipoEquipo = parseInt(prompt("Que tipo de equipo tiene? \n 1 Equipo de escritorio, \n 2 Notebook"))
-                    for (tipoEquipo == 1) { 
+                    let tipoEquipo = parseInt(prompt("Que tipo de equipo tiene? \n 1 - Equipo de escritorio \n 2 - Notebook"))
+                    if (tipoEquipo == 1) { 
                         let antiguedadPc = parseInt(prompt("Hace cuantos años posee el equipo?"))
-                        let errorHoS = prompt("el tipo de error es de Hardware o Software?")
-                        let marcaPc = prompt("Ingrese la marca de su equipo (HP, Dell o Lenovo)")
-                        alert("La cotización para la reparación de su Equipo de escritorio marca: "+marcaPC+", con una antigüedad de "+antiguedadPC+" año/s, y error de "+errorHoS+" es de: $ ")
-                        
-                        function sumaPc (antiguedadPc, errorHoS, marcaPC) {
+                        let errores = prompt("el tipo de error es de Hardware o Software?")
+                        let marcas = prompt("Ingrese la marca de su equipo (HP, Dell o Lenovo)")
+                                                
+                        function sumaPc (antiguedadPc, errores, marcas) {
+                            let cotizacionPc
                             if (antiguedadPc >= 3){
-                                let cotizacionPc =  sinGarantía + marcaPc + errores
-                            } else { 
-                                let cotizacionPc = conGarantía + marcaPc + errores
+                                cotizacionPc = sinGarantia + errores + marcas
+                            }else { 
+                                cotizacionPc = conGarantia + errores + marcas
                             }
-                            
+                            alert("La cotización para la reparación de su Equipo de escritorio marca: "+marcas+", con una antigüedad de "+antiguedadPc+" año/s, y error de "+errores+" es de: $"+cotizacionPc)
                         }
+                        sumaPc(antiguedadPc, errores, marcas)                                        
                     }
                     
-                    for (tipoEquipo == 2) {
+                    else if (tipoEquipo = 2) {
                         let antiguedadNotebook = parseInt(prompt("Hace cuantos años posee el equipo?"))
                         let errorHoS = prompt("El tipo de error es de Hardware o Software?")
                         let marcaPc = prompt("Ingrese la marca de su equipo (HP, Dell o Lenovo)")
                                             
                         function sumaNotebook (notebook, marcas, antiguedadNotebook, errorHoS) {
+                            let cotizacionNotebook
                             if (antiguedadNotebook >= 3) {
-                            let cotizacionNotebook = notebook + conGarantía + marcaPc + errorHoS
+                            cotizacionNotebook = notebook + conGarantia + marcaPc + errorHoS
                             } else { 
-                            let cotizacionNotebook = notebook + sinGarantía + marcaPc + errorHoS
+                            cotizacionNotebook = notebook + sinGarantia + marcaPc + errorHoS
                             }
-                            alert("La cotización para la reparación de su Notebook marca: "+marcaPC+", con una antigüedad de "+antiguedadPC+" año/s, y error de "+errorHoS+" es de: $ ")
+                            alert(" La cotización para la reparación de su Notebook marca: "+marcaPC+", con una antigüedad de "+antiguedadPc+" año/s, y error de "+errorHoS+" es de: $"+cotizacionNotebook)
                         }
-                    }
+                        sumaNotebook()                        
+                        
+                    }                 
                     break
                 case 2:
                     console.log("Ingrese el número de ticket que abrió con anterioridad")
