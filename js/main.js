@@ -21,7 +21,7 @@ let nombreUsuario = prompt("Ingrese su nombre")
 let email = prompt("Ingrese su direccion de correo electronico")
 let id = parseInt(prompt("Ingrese su id de empleado"))
 console.log(nombreUsuario, email, id)
-alert("Bienvenido al sistema de tickets:"+nombreUsuario+" \n Correo:"+email+" \n Empleado N°"+id)
+alert("Bienvenido al sistema de tickets "+nombreUsuario+" \n Correo:"+email+" \n Empleado N°"+id)
     
 let continuar = true
 while (continuar !==4){
@@ -30,48 +30,81 @@ while (continuar !==4){
         case 1:
             let tipoEquipo = parseInt(prompt("Que tipo de equipo tiene? \n 1 - Equipo de escritorio \n 2 - Notebook"))
             if (tipoEquipo == 1) {  
-                function sumaPc(antiguedadPc, errorPc) {                  
+                function sumaPc() {                  
                 let antiguedadPc = parseInt(prompt("Hace cuantos años posee el equipo?"))
                 let errorPc = parseInt(prompt("El tipo de error es de Hardware o Software? \n 1 - Hardware \n 2 - Software"))        
                     if (antiguedadPc >= 3) {
-                        tieneGarantia = sinGarantia
+                        estadoGarantia = 0
                     } else {
-                        tieneGarantia = conGarantia
+                        estadoGarantia = 15000
                     }
                     if (errorPc == 1) {
-                        tipoError = hardware
+                        tipoError = 10000
                     } else if (errorPc == 2) {
-                        tipoError = software
+                        tipoError = 15000
                     }
-                    let cotizacionPc = tieneGarantia + tipoError
-                    return cotizacionPc
+                    let cotizacionPc = estadoGarantia + tipoError
+                    return alert("La cotización para la reparación de su Equipo de escritorio, con una antigüedad de "+antiguedadPc+" año/s, y error de "+errorPc+" es de: $"+cotizacionPc)                  
                 }
-                sumaPc()   
-                alert("La cotización para la reparación de su Equipo de escritorio marca: "+marcas+", con una antigüedad de "+antiguedadPc+" año/s, y error de "+errores+" es de: $"+cotizacionPc)
+                sumaPc()
+                        
+                
             }                   
-            else if (tipoEquipo = 2) {           
+            else if (tipoEquipo = 2) {
+                function sumaNb(){
                 let antiguedadNb = parseInt(prompt("Hace cuantos años posee el equipo?"))
-                let errorNb = prompt("El tipo de error es de Hardware o Software?")
-                let marcaNb = prompt("Que marca es su equipo?")           
+                let errorNb = parseInt(prompt("El tipo de error es de Hardware o Software? \n 1- Hardware \n 2 -Software"))
+                let marcaNb = parseInt(prompt("Que marca es su equipo? \n 1 - HP \n 2- Dell \n 3 - Lenovo"))            
+                    if (antiguedadNb >= 3) {
+                        estadoGarantia = 0
+                    } else {
+                        estadoGarantia = 15000
+                    }
+                    if (errorNb == 1) {
+                        tipoError = 25000
+                    } else if (errorNb == 2) {
+                        tipoError = 20000
+                    }
+                    if (marcaNb == 1){
+                        marcaEquipo = 35000
+                    } else if (marcaNb == 2){
+                        marcaEquipo = 39000
+                    } else if (marcaNb == 3){
+                        marcaEquipo = 42000
+                    }
+                    let cotizacionNb = estadoGarantia + tipoError + marcaEquipo
+                    return alert("La cotización para la reparación de su Notebook marca "+marcaNb+", con una antigüedad de "+antiguedadNb+" año/s, y error de "+errorNb+" es de: $"+cotizacionNb)
+                }
+                sumaNb()       
             }                 
             break
+
         case 2:
-            console.log("Ingrese el número de ticket que abrió con anterioridad")
+            let ticketNro = parseInt(prompt("Ingrese el número de ticket que abrió con anterioridad"))
+            function chequeoNroticket(){
+                if (ticketNro <= 1000){
+                    return alert("Un técnico se contactará a la brevedad al correo proporcionado")
+                } else {
+                    return prompt("El número de ticket ingresado no se corresponde con nuestra base de datos")
+                }
+            }
+            chequeoNroticket()
+            
             break
         case 3:
-            console.log("Un técnico se contactará a la brevedad")
+            alert("Un técnico se contactará a la brevedad al correo proporcionado")
             break
+
         default:
-            console.log("Volverá al Menú principal")
+            alert("Volverá al Menú principal")
             break
     }
 
     let confirmar = prompt("Otra consulta? (SI/NO)").toLowerCase()
     if(confirmar == "no") {
         continuar = false
-        console.log("Saludos")
+        alert("Saludos")
     }
-}
-        
+} 
 
 
